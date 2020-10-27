@@ -174,7 +174,7 @@ export default {
 
         let i = this.notes.findIndex(item => item._id === res.data._id);
 
-        if (i) this.notes.splice(i, this.notes);
+        if (i != -1) this.notes.splice(i, 1);
 
       } catch (error) {
         console.log(error);
