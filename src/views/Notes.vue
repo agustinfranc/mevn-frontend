@@ -175,7 +175,6 @@ export default {
         let i = this.notes.findIndex(item => item._id === res.data._id);
 
         if (i != -1) this.notes.splice(i, 1);
-
       } catch (error) {
         console.log(error);
         this.showAlert();
@@ -221,8 +220,7 @@ export default {
 
         if (!this.form._id) {
           this.notes.push(res.data);
-        }
-        else {
+        } else {
           let i = this.notes.findIndex(item => item._id === res.data._id);
           if (i != -1) this.notes.splice(i, 1, res.data);
           console.log(this.notes);
