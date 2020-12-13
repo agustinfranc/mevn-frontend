@@ -2,13 +2,27 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
-      <router-link to="/login">Login</router-link> |
+      <router-link to="/login" v-if="!isAuthenticated">Login | </router-link>
+      <a href="#" @click="logout" v-if="isAuthenticated">Logout | </a>
       <router-link to="/about">About</router-link> |
-      <router-link to="/notes">Notes</router-link>
+      <router-link to="/notes" v-if="isAuthenticated">Notes</router-link>
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  },
+  methods: {
+    ...mapActions(["logout"])
+  }
+};
+</script>
 
 <style>
 #app {

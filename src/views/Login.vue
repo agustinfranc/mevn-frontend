@@ -29,7 +29,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import router from "../router/index"
+import router from "../router/index";
 
 export default {
   data: () => ({
@@ -47,10 +47,9 @@ export default {
 
         this.saveToken(res.data.token);
 
-        router.push({name: "Notes"})
+        router.push({ name: "Notes" });
       } catch (error) {
-        console.log(error);
-        console.log(error.response);
+        console.error(error.response ?? error);
       }
     }
   }
