@@ -100,6 +100,8 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "Notes",
 
@@ -123,6 +125,14 @@ export default {
     };
   },
 
+  computed: {
+    ...mapState({
+      headers: state => {
+        return { token: state.token };
+      }
+    })
+  },
+
   created() {
     this.getNotes();
   },
@@ -130,9 +140,7 @@ export default {
   methods: {
     async getNotes() {
       try {
-        const res = await this.axios.get("/notes");
-
-        console.log(res);
+        const res = await this.axios.get("/notes", { headers: this.headers });
 
         if (!res.data) {
           this.form.error = true;
@@ -140,15 +148,13 @@ export default {
 
         this.notes = res.data;
       } catch (error) {
-        console.log(error);
+        console.error(error.response ?? error);
         this.showAlert();
       }
     },
     async getNote(id) {
       try {
-        const res = await this.axios.get(`/notes/${id}`);
-
-        console.log(res);
+        const res = await this.axios.get(`/notes/${id}`, { headers: this.headers });
 
         if (!res.data) {
           //
@@ -170,7 +176,7 @@ export default {
     },
     async deleteNote(id) {
       try {
-        const res = await this.axios.delete(`/notes/${id}`);
+        const res = await this.axios.delete(`/notes/${id}`, { headers: this.headers });
 
         let i = this.notes.findIndex(item => item._id === res.data._id);
 
@@ -213,10 +219,8 @@ export default {
       try {
         const url = !this.form._id ? `/notes` : `/notes/${this.form._id}`;
         const res = !this.form._id
-          ? await this.axios.post(url, this.form)
-          : await this.axios.put(url, this.form);
-
-        console.log(res);
+          ? await this.axios.post(url, this.form, { headers: this.headers })
+          : await this.axios.put(url, this.form, { headers: this.headers });
 
         if (!this.form._id) {
           this.notes.push(res.data);
@@ -232,7 +236,7 @@ export default {
 
         this.$bvModal.hide("modal-note");
       } catch (error) {
-        console.log(error);
+        console.error(error.response ?? error);
       }
     },
     onReset() {
