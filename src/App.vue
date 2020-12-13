@@ -8,10 +8,10 @@
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/">Home</b-nav-item>
+            <b-nav-item to="/" v-if="isAuthenticated">Home</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
-            <b-nav-item to="/notes" v-if="isAuthenticated">Notes</b-nav-item>
-            <b-nav-item to="/notes" v-if="!isAuthenticated">Login</b-nav-item>
+            <b-nav-item to="/login" v-if="!isAuthenticated">Sign In</b-nav-item>
+            <b-nav-item to="/register" v-if="!isAuthenticated">Sign Up</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->

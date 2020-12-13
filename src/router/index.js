@@ -1,16 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import store from "../store/index";
 
 Vue.use(VueRouter);
 
 const routes = [
-  {
-    path: "/",
-    name: "Home",
-    component: Home
-  },
   {
     path: "/about",
     name: "About",
@@ -21,8 +15,8 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/notes",
-    name: "Notes",
+    path: "/",
+    name: "Home",
     component: () =>
       import(/* webpackChunkName: "notes" */ "../views/Notes.vue"),
     meta: { requiresAuth: true }
@@ -32,6 +26,12 @@ const routes = [
     name: "Login",
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/Login.vue")
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: () =>
+      import(/* webpackChunkName: "register" */ "../views/Register.vue")
   }
 ];
 

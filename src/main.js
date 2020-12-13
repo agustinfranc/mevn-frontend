@@ -12,6 +12,7 @@ Vue.use(BootstrapVue);
 Vue.use(VueAxios, axios);
 
 axios.defaults.baseURL = "http://localhost:3500/api";
+// axios.defaults.baseURL = "https://mevn-notes-app.herokuapp.com/api";
 
 Vue.config.productionTip = false;
 
