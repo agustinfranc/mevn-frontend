@@ -1,17 +1,17 @@
 <template>
   <div class="container text-left pt-3">
-    <h2>Login</h2>
+    <h2>Register</h2>
 
     <b-alert
       :show="alert.dismissCountDown"
       dismissible
-      variant="warning"
+      variant="success"
       @dismissed="alert.dismissCountDown = 0"
       @dismiss-count-down="countDownChanged"
     >
       <p>{{ alert.message }}</p>
       <b-progress
-        variant="warning"
+        variant="success"
         :max="alert.dismissSecs"
         :value="alert.dismissCountDown"
         height="4px"
@@ -19,6 +19,16 @@
     </b-alert>
 
     <form @submit.prevent="submit">
+      <div class="form-group">
+        <label for="inputName">Name</label>
+        <input
+          v-model="name"
+          type="text"
+          class="form-control"
+          id="inputName"
+          placeholder="Name"
+        />
+      </div>
       <div class="form-group">
         <label for="inputEmail">Email address</label>
         <input
@@ -50,6 +60,7 @@ import router from "../router/index";
 
 export default {
   data: () => ({
+    name: "",
     email: "",
     password: "",
     alert: {
@@ -65,25 +76,24 @@ export default {
     ...mapActions(["saveToken"]),
     async submit() {
       try {
-        const res = await this.axios.post("login", {
+        const res = await this.axios.post("users", {
+          name: this.name,
           email: this.email,
           password: this.password
         });
 
-        this.saveToken(res.data.token);
+        if (!res.data) return;
 
-        router.push({ name: "Home" });
+        this.showAlert(`User ${res.data.email} created successfully`);
       } catch (error) {
         console.error(error.response ?? error);
-
-        this.showAlert(error.response ? error.response.data.error.message : '')
       }
     },
     countDownChanged(dismissCountDown) {
       this.alert.dismissCountDown = dismissCountDown;
     },
     showAlert(message) {
-      if (message) this.alert.message = message;
+      this.alert.message = message;
       this.alert.dismissCountDown = this.alert.dismissSecs;
     }
   },
