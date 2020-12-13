@@ -1,29 +1,27 @@
 <template>
-  <div class="container">
+  <div class="container pt-3">
     <div class="d-flex justify-content-between">
-      <h1>Notas</h1>
-      <b-button v-b-modal.modal-note>Nueva nota</b-button>
+      <h1>Notes</h1>
+      <b-button v-b-modal.modal-note>New note</b-button>
     </div>
 
     <div class="my-3">
       <table class="table">
         <thead>
-          <th scope="col">#</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Descripcion</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Actions</th>
         </thead>
         <tbody>
           <tr v-for="item in notes" :key="item.id">
-            <th scope="row">{{ item._id }}</th>
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
             <td>
               <b-button @click="updateNote(item._id)" class="mx-1 btn-warning"
-                >Editar</b-button
+                >Edit</b-button
               >
               <b-button @click="deleteNote(item._id)" class="mx-1 btn-danger"
-                >Eliminar</b-button
+                >Delete</b-button
               >
             </td>
           </tr>
