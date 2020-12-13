@@ -8,6 +8,8 @@
 - With BootstrapVue framework
 - Linting with ESlint
 
+### Deployed on https://mevn-notes-app.herokuapp.com/
+
 *************************************
 
 ## Project setup
