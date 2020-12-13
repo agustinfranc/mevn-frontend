@@ -154,15 +154,14 @@ export default {
       try {
         const res = await this.axios.get(`/notes/${id}`, { headers: this.headers });
 
-        if (!res.data) {
-          //
-        }
+        if (!res.data) return;
 
         this.form = { ...res.data };
 
         return true;
       } catch (error) {
-        console.log(error);
+        console.error(error.response ?? error);
+
         this.showAlert();
         return false;
       }
@@ -180,7 +179,7 @@ export default {
 
         if (i != -1) this.notes.splice(i, 1);
       } catch (error) {
-        console.log(error);
+        console.error(error.response ?? error);
         this.showAlert();
       }
     },
@@ -225,7 +224,7 @@ export default {
         } else {
           let i = this.notes.findIndex(item => item._id === res.data._id);
           if (i != -1) this.notes.splice(i, 1, res.data);
-          console.log(this.notes);
+
           delete this.form._id;
         }
 
