@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import router from "../router/index";
 
 export default {
@@ -36,6 +36,9 @@ export default {
     email: "",
     password: ""
   }),
+  computed: {
+    ...mapGetters(["isAuthenticated"])
+  },
   methods: {
     ...mapActions(["saveToken"]),
     async submit() {
@@ -52,6 +55,9 @@ export default {
         console.error(error.response ?? error);
       }
     }
+  },
+  created() {
+    if (this.isAuthenticated) router.push({ name: "Home" });
   }
 };
 </script>

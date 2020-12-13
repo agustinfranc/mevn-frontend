@@ -23,6 +23,18 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    getToken({ commit }) {
+      if (this.state.token) return this.state.token
+
+      const token = localStorage.getItem("token");
+
+      if (!token) return;
+
+      commit("SET_TOKEN", token);
+      commit("SET_USER", token);
+
+      return token;
+    },
     saveToken({ commit }, payload) {
       localStorage.setItem("token", payload);
 

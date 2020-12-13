@@ -46,6 +46,8 @@ router.beforeEach((to, from, next) => {
 
   if (requiresAuth && !store.state.token) next({ name: "Login" });
 
+  if (to.name === "Login" && store.getters.isAuthenticated) return;
+
   next();
 });
 
