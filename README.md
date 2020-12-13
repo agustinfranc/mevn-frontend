@@ -1,4 +1,14 @@
-# mevn-frontend
+# Notes Project
+
+## This is a small responsive MEVN (MongoDB + Express.js + Vue.js + Node.js) project.
+
+- Stateless Authentication with JWT
+- Implemented Vue Router and Vuex
+- Deployed on Heroku
+- With BootstrapVue framework
+- Linting with ESlint
+
+*************************************
 
 ## Project setup
 ```
