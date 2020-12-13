@@ -16,11 +16,19 @@
           <tr v-for="item in notes" :key="item.id">
             <td>{{ item.name }}</td>
             <td>{{ item.description }}</td>
-            <td>
+            <td class="d-none d-md-block">
               <b-button @click="updateNote(item._id)" class="mx-1 btn-warning"
                 >Edit</b-button
               >
               <b-button @click="deleteNote(item._id)" class="mx-1 btn-danger"
+                >Delete</b-button
+              >
+            </td>
+            <td class="d-md-none">
+              <b-button size="sm" @click="updateNote(item._id)" class="m-1 btn-warning"
+                >Edit</b-button
+              >
+              <b-button size="sm" @click="deleteNote(item._id)" class="m-1 btn-danger"
                 >Delete</b-button
               >
             </td>

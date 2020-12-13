@@ -2,7 +2,7 @@
   <div id="app">
     <div>
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand href="#">My Notes</b-navbar-brand>
+        <b-navbar-brand>My Notes</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
