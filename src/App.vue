@@ -19,7 +19,10 @@ export default {
     ...mapGetters(["isAuthenticated"])
   },
   methods: {
-    ...mapActions(["logout"])
+    ...mapActions(["logout", "getToken"])
+  },
+  created() {
+    this.getToken();
   }
 };
 </script>
